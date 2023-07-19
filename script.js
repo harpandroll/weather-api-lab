@@ -11,7 +11,7 @@ const temp = document.querySelector('#temp')
 //Event Listenener
 button.addEventListener('click', async () => {
     let requestedCity = weatherInput.value
-    let city = requestedCity
+   //let city = requestedCity
 
 //Call the weatherapi using the base url and API method for current weather
     const response = await axios.get(
