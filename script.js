@@ -1,38 +1,44 @@
 //Cached UI Variables
-const apiKey = 'a7781965288f4e048db144842230907'
+const apiKey = 'ed7a93a35e9c49c3864131508231707'
 const button = document.querySelector('button')
 const weatherInput = document.querySelector('input')
+const city = document.querySelector('#cityName')
+const temp = document.querySelector('#temp')
+
 
 //Event Handlers
 
 //Event Listenener
 button.addEventListener('click', async () => {
-//
-const response = await axios.get(
-    'https://www.weatherapi.com/docs/#', {
-    //'https://www.weatherapi.com/docs/#', {
-        params: {
-            key: apiKey,
-            q: weatherInput.value
-        }
-        }
+    let requestedCity = weatherInput.value
+    let city = requestedCity
 
-    ).then(response => response.data)
+//Call the weatherapi using the base url and API method for current weather
+    const response = await axios.get(
+        'http://api.weatherapi.com/v1/current.json', {
 
-console.log("City = ", weatherInput.value)
-console.log("Response = ",response)
-//console.log("Response Body Location = ", response.body['location'])
-//console.log("Response = ", response)   
-//console.log("Response Data = ", response.data)
- //   axios.get('http://www.url.com/api/endpoint', {
- // params: {
-  //  id: 1,
- //   name: Brian
- // }
-//})
+      params: {
+            key: 'ed7a93a35e9c49c3864131508231707',
+            q: weatherInput.value,
+            aqi: 'no'
+            }
+        })
+   // Capture pertinent weather information
+   
+   //const temperature = response.data.current.temp_f;
+   //temp.textContent = temperature;
+   city.textContent = requestedCity
+   temp.textContent = response.data.current.temp_f;
+   const feelslike = response.data.current.feelslike_f;
+   const humidity = response.data.current.humidity;
+      
 
-//console.log("Response-data-message =", weatherResult)
-//onsole.log("Temperature in Fahrenheit = ", )
+console.log("City = ", requestedCity)
+//console.log("Temperature = ", temperature)
+console.log("Feels Like = ", feelslike)
+console.log("Humidity = ", humidity)
+console.log("city #cityName =", city)
+
+})
 
 
-})  
